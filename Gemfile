@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.6p336'
+# ruby '2.1.6p336' ; This doesn't help heroku warning
 
 gem 'rails', '3.2.21'
 
