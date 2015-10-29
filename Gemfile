@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # ruby '2.1.6p336' ; This doesn't help heroku warning
 
 gem 'rails', '3.2.21'
+gem 'bootstrap-sass', '2.1'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
