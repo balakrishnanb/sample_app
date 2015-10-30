@@ -24,5 +24,5 @@ class User < ActiveRecord::Base
   end
 
   validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, email: true, uniqueness: { case_sensitive: false }
+  #validates :email, email: true
 end
