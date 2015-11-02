@@ -2,11 +2,11 @@
     <%= render 'shared/error_messages', object: f.object %>
     <div class="field">
         <%= f.label :title %><br />
-        <%= f.text_field :title, autofocus: true, placeholder: "Type your Question here" %>
+        <%= f.text_field :title, autofocus: true, placeholder: "Type your Question here", id: "question_title_text_box" %>
     </div>
     <div class="field">
         <%= f.label :content %><br />
-        <%= f.text_area :content, rows: 5, placeholder: "Optional: Add more details about your question here" %>
+        <%= f.text_area :content, rows: 5, placeholder: "Optional: Add more details about your question here", id: "question_details_textarea" %>
     </div>
     <div class="actions">
         <%= f.submit "Ask" %>
