@@ -1,15 +1,21 @@
 <% provide(:title, "Question") %>
 <h3>Question: <%= @question.title %></h3>
-<p><%= @question.content %></p>
 <table class="fw">
   <tbody>
-    <% if current_user == @question.user %>
-      <tr>
-        <td>
-            <%= link_to "edit", edit_question_path %> | <%= link_to "delete", question_path, method: :delete %>
+    <tr>
+      <td><%= @question.content %></td>
+    </tr>
+    <tr>
+      <% if current_user == @question.user %>
+        <td >
+          <%= link_to "edit", edit_question_path %> | <%= link_to "delete", question_path, method: :delete %>
         </td>
-      </tr>
-    <% end %>
+      <% else %>
+        <td>
+
+        </td>
+      <% end %>
+    </tr>
     <tr>
       <td> <%= gravatar_for @question.user %>
         Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= link_to @question.user.name, @question.user %> </td>
