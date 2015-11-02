@@ -1,7 +1,9 @@
 SampleApp::Application.routes.draw do
   devise_for :users
   resources :users#, only: [:show]
-  resources :questions
+  resources :questions do
+      resources :answers, only: [:create, :update, :destroy]
+  end
 
   root to: 'questions#index'
 

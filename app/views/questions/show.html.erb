@@ -9,3 +9,19 @@
 <% if current_user == @question.user %>
     <p><%= link_to "Delete Question", question_path, method: :delete %></p>
 <% end %>
+<%= form_for([@question, @question.answers.build]) do |f| %>
+  <div class="field">
+    <h3>Answer</h3>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Answer" %>
+  </div>
+<% end %>
+<% if @question.answers.any? %>
+    <h3>Answers (<%= @question.answers.count %>)</h3>
+    <ul class="answers">
+         <%= render @question.answers %> 
+    </ul>
+    <!--  will_paginate @questions -->
+<% end %>
