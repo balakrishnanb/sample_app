@@ -3,11 +3,14 @@
 <p><%= @question.content %></p>
 <table class="fw">
   <tbody>
+    <% if current_user == @question.user %>
+      <tr>
+        <td>
+            <%= link_to "edit", edit_question_path %> | <%= link_to "delete", question_path, method: :delete %>
+        </td>
+      </tr>
+    <% end %>
     <tr>
-      <% if current_user == @question.user %>
-        <td><%= link_to "edit", edit_question_path %></td>
-        <td><%= link_to "delete", question_path, method: :delete %></td>
-      <% end %>
       <td> <%= gravatar_for @question.user %>
         Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= link_to @question.user.name, @question.user %> </td>
     </tr>
@@ -16,7 +19,7 @@
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <div class="field">
     <h3>Answer</h3>
-    <%= f.text_area :body, rows: "5" %>
+    <%= f.text_area :body, rows: "5", placeholder: "Type your answer here" %>
   </div>
   <div class="actions">
     <%= f.submit "Add Answer" %>
