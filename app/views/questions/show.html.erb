@@ -1,27 +1,31 @@
 <% provide(:title, "Question") %>
-<h2>
-    <%= gravatar_for @question.user %>
-    <%= link_to @question.user.name, @question.user %>
-</h2>
 <h3>Question: <%= @question.title %></h3>
 <p><%= @question.content %></p>
-<p><%= link_to "Edit Question", edit_question_path %></p>
-<% if current_user == @question.user %>
-    <p><%= link_to "Delete Question", question_path, method: :delete %></p>
-<% end %>
+<table class="fw">
+  <tbody>
+    <tr>
+      <% if current_user == @question.user %>
+        <td><%= link_to "edit", edit_question_path %></td>
+        <td><%= link_to "delete", question_path, method: :delete %></td>
+      <% end %>
+      <td> <%= gravatar_for @question.user %>
+        Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= link_to @question.user.name, @question.user %> </td>
+    </tr>
+  </tbody>
+</table>
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <div class="field">
     <h3>Answer</h3>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, rows: "5" %>
   </div>
   <div class="actions">
     <%= f.submit "Add Answer" %>
   </div>
 <% end %>
 <% if @question.answers.any? %>
-    <h3>Answers (<%= @question.answers.count %>)</h3>
-    <ul class="answers">
-         <%= render @question.answers %> 
-    </ul>
-    <!--  will_paginate @questions -->
+  <h3>Answers (<%= @question.answers.count %>)</h3>
+  <ul class="answers">
+    <%= render @question.answers %> 
+  </ul>
+  <!--  will_paginate @questions -->
 <% end %>
