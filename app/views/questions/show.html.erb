@@ -1,8 +1,11 @@
 <% provide(:title, "Question") %>
 <h2>
     <%= gravatar_for @question.user %>
-    <%= @question.user.name %>
+    <%= link_to @question.user.name, @question.user %>
 </h2>
 <h3>Question: <%= @question.title %></h3>
 <p><%= @question.content %></p>
 <p><%= link_to "Edit Question", edit_question_path %></p>
+<% if current_user == @question.user %>
+    <p><%= link_to "Delete Question", question_path, method: :delete %></p>
+<% end %>

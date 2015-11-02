@@ -41,7 +41,12 @@ class QuestionsController < ApplicationController
 
     def destroy
         @question = Question.find(params[:id])
-        @question.destroy
+        if current_user == @question.user
+            @question.destroy
+            redirect_to root_path, notice: "Question deleted successfully"
+        else
+            redirect_to @question, alert: "You are not authorized to delete!"
+        end
     end
 end
 
