@@ -19,7 +19,7 @@ namespace :db do
     50.times do |n|
         content = Faker::Lorem.sentence(10)
         users.each do |user|
-            title =  Faker::Hacker.say_something_smart << " #{n+1}"
+            title =  Faker::Hacker.say_something_smart.chop + Faker::Lorem.word + '?'
             user.questions.create!(title: title, content: content)
         end
     end
