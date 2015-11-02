@@ -31,8 +31,8 @@
     <%= f.submit "Add Answer" %>
   </div>
 <% end %>
-<% if @question.answers.any? %>
   <h3>Answers (<%= @question.answers.count %>)</h3>
+<% if @question.answers.count != 0 %>
   <ul class="answers">
     <%= render @question.answers %> 
   </ul>
