@@ -13,13 +13,13 @@ class AnswersController < ApplicationController
     end
 
     def destroy
-      @answer = Answer.find(:first, params[:id])
+      
+      @question = Question.find(params[:question_id])
+      @answer = @question.answers.find_by_id(params[:id])
       # HACK: For some reason two delete requests are sent for every click
       if @answer.nil?
-        @question = Question.find(params[:question_id])
         redirect_to @question, notice: "Answer deleted successfully"
       else
-        @question = @answer.question
         if current_user == @answer.user
           @answer.destroy
           redirect_to @question, notice: "Answer deleted successfully"
