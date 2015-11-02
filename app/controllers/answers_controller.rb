@@ -6,20 +6,26 @@ class AnswersController < ApplicationController
         puts "####################################", params
         @answer.user = current_user
         if @answer.save
-            redirect_to @answer.question, notice: "Answer added successfully"
+            redirect_to @answer.question, notice: "Answer added successfully "
         else
-            redirect_to @answer.question, notice: "Failed to add answer"
+            redirect_to @answer.question, alert: "Failed to add answer"
         end
     end
 
     def destroy
-        @answer = Answer.find(params[:id])
+      @answer = Answer.find(:first, params[:id])
+      # HACK: For some reason two delete requests are sent for every click
+      if @answer.nil?
+        @question = Question.find(params[:question_id])
+        redirect_to @question, notice: "Answer deleted successfully"
+      else
         @question = @answer.question
         if current_user == @answer.user
-            @answer.destroy
-            redirect_to @question, notice: "Answer deleted successfully"
+          @answer.destroy
+          redirect_to @question, notice: "Answer deleted successfully"
         else
-            redirect_to @question, alert: "You are not authorized to delete!"
+          redirect_to @question, alert: "You are not authorized to delete!"
         end
+      end
     end
 end

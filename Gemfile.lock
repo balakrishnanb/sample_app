@@ -36,6 +36,7 @@ GEM
     bootstrap-will_paginate (0.0.6)
       will_paginate
     builder (3.0.4)
+    byebug (6.0.2)
     capybara (1.1.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -171,6 +172,7 @@ DEPENDENCIES
   annotate (= 2.5.0)
   bootstrap-sass (= 2.1)
   bootstrap-will_paginate (= 0.0.6)
+  byebug
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   devise
