@@ -22,6 +22,7 @@
     </tr>
   </tbody>
 </table>
+<% if user_signed_in? %>
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <div class="field">
     <h3>Answer</h3>
@@ -30,6 +31,7 @@
   <div class="actions">
     <%= f.submit "Add Answer" %>
   </div>
+<% end %>
 <% end %>
   <h3>Answers (<%= @question.answers.count %>)</h3>
 <% if @question.answers.count != 0 %>
