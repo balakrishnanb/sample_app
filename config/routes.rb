@@ -3,7 +3,7 @@ SampleApp::Application.routes.draw do
   resources :users#, only: [:show]
   resources :questions
 
-  root to: 'static_pages#home'
+  root to: 'questions#index'
 
   match '/home',    to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'
