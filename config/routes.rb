@@ -1,6 +1,7 @@
 SampleApp::Application.routes.draw do
   devise_for :users
   resources :users#, only: [:show]
+  resources :questions
 
   root to: 'static_pages#home'
 

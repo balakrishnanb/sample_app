@@ -1,0 +1,7 @@
+<% provide(:title, "Question") %>
+<h2>
+    <%= gravatar_for @question.user %>
+    <%= @question.user.name %>
+</h2>
+<h3>Question: <%= @question.title %></h3>
+<p><%= @question.content %></p>

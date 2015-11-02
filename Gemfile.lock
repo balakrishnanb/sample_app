@@ -64,8 +64,8 @@ GEM
       activemodel
     erubis (2.7.0)
     execjs (2.6.0)
-    faker (1.0.1)
-      i18n (~> 0.4)
+    faker (1.5.0)
+      i18n (~> 0.5)
     ffi (1.9.10)
     hike (1.2.3)
     i18n (0.7.0)
@@ -176,7 +176,7 @@ DEPENDENCIES
   devise
   email_validator
   execjs
-  faker (= 1.0.1)
+  faker
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
   rails (= 3.2.21)

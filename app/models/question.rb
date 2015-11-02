@@ -3,4 +3,5 @@ class Question < ActiveRecord::Base
   belongs_to :user
   validates :user_id, presence: true
   validates :title, presence: true, length: { minimum: 10 }, uniqueness: true
+  default_scope order: 'questions.created_at DESC'
 end

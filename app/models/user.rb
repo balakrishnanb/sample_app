@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :name
-  has_many :questions
+  has_many :questions, dependent: :destroy
 
   before_save do |user|
     user.email = email.downcase

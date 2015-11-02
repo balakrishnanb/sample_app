@@ -14,5 +14,15 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    users = User.all(limit: 6)
+    50.times do |n|
+        content = Faker::Lorem.sentence(10)
+        users.each do |user|
+            title =  Faker::Hacker.say_something_smart << " #{n+1}"
+            user.questions.create!(title: title, content: content)
+        end
+    end
+    
   end
 end
