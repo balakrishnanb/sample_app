@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :name
   has_many :questions, dependent: :destroy
-  has_many :upvotes, dependent: :destroy
-  has_many :upvoted_questions, class_name: 'Question', through: :upvotes, source: :question
+  has_many :votes, dependent: :destroy
+  has_many :voted_questions, class_name: 'Question', through: :votes, source: :question
   has_many :answers, dependent: :destroy
 
   before_save do |user|

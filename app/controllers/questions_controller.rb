@@ -27,11 +27,14 @@ class QuestionsController < ApplicationController
         if @question.user == current_user
           redirect_to :back, alert: "You cannot upvote your own question"
         else
-          vote = Upvote.new
+          vote = Vote.new
           vote.question = @question
           vote.user = current_user
-          vote.save
-          redirect_to :back, notice: "Question upvoted successfully"
+          vote.value = 1
+          if vote.save
+            redirect_to :back, notice: "Question upvoted successfully"
+          else
+            redirect_to :back, notice: "You are either not authorized to do this"
         end
     end
 
