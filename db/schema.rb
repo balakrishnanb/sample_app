@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20151103132102) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "score",      :default => 0
+    t.text     "content"
   end
 
   add_index "questions", ["title"], :name => "index_questions_on_title", :unique => true
