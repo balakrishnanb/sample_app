@@ -11,6 +11,9 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/questions/upvote/:id', to: 'questions#upvote', as: :upvote_question
+  match '/questions/downvote/:id', to: 'questions#downvote', as: :downvote_question
+  match '/questions/clearvote/:id', to: 'questions#clearvote', as: :clearvote_question
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

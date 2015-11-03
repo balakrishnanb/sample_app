@@ -1,5 +1,5 @@
 <% provide(:title, "Question") %>
-<h3><big><em>Question</em>: <%= @question.title %></big></h3>
+<h3><big>[score <%= @question.score %>]<em>Question</em>: <%= @question.title %></big></h3>
 <hr />
 <table class="fw">
   <tbody>
@@ -7,18 +7,18 @@
       <td><p class="lead text-justify"><%= markdown(@question.content) %></p></td>
     </tr>
     <tr>
-      <% if current_user == @question.user %>
         <td >
           <ul class="list-inline">
+      <% if user_signed_in? %>
+        <li><%= link_to "upvote", @upvote_link, style: @upvote_style %></li>
+        <li><%= link_to "downvote", @downvote_link, style: @downvote_style %></li>
+      <% end %>
+      <% if current_user == @question.user %>
             <li><%= link_to "edit", edit_question_path %></li>
             <li><%= link_to "delete", question_path, method: :delete %></li>
+      <% end %>
           </ul>
         </td>
-      <% else %>
-        <td>
-
-        </td>
-      <% end %>
       <td style="float:right"> 
         <%= gravatar_for @question.user %><br />
         Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= link_to @question.user.name, @question.user %> </td>
