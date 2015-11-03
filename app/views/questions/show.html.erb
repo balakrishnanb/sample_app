@@ -4,7 +4,7 @@
 <table class="fw">
   <tbody>
     <tr>
-      <td><p class="lead text-justify"><%= @question.content %></p></td>
+      <td><p class="lead text-justify"><%= markdown(@question.content) %></p></td>
     </tr>
     <tr>
       <% if current_user == @question.user %>

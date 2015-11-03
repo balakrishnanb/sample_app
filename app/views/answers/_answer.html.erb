@@ -1,6 +1,6 @@
 <% if answer.created_at %>
 <li>
-<span class="content"><p class="lead"><%= answer.body %></p></span>
+<span class="content"><p class="lead"><%= markdown(answer.body) %></p></span>
   <span class="timestamp">
     Answered <%= time_ago_in_words(answer.created_at) %> ago by <%= link_to answer.user.name, answer.user %>
       <% if current_user == answer.user %>
@@ -8,4 +8,5 @@
       <% end %>
   </span>
 </li>
+<hr>
 <% end %>
