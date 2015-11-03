@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151102061139) do
+ActiveRecord::Schema.define(:version => 20151103092348) do
 
   create_table "answers", :force => true do |t|
     t.text     "body"
@@ -28,12 +28,20 @@ ActiveRecord::Schema.define(:version => 20151102061139) do
     t.string   "content"
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "upvotes_count"
   end
 
   add_index "questions", ["title"], :name => "index_questions_on_title", :unique => true
   add_index "questions", ["user_id", "created_at"], :name => "index_questions_on_user_id_and_created_at"
+
+  create_table "upvotes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
