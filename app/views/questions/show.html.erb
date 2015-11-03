@@ -1,24 +1,29 @@
 <% provide(:title, "Question") %>
-<h3>Question: <%= @question.title %></h3>
+<h3><big><em>Question</em>: <%= @question.title %></big></h3>
+<hr />
 <table class="fw">
   <tbody>
     <tr>
-      <td><%= @question.content %></td>
+      <td><p class="lead text-justify"><%= @question.content %></p></td>
     </tr>
     <tr>
       <% if current_user == @question.user %>
         <td >
-          <%= link_to "edit", edit_question_path %> | <%= link_to "delete", question_path, method: :delete %>
+          <ul class="list-inline">
+            <li><%= link_to "edit", edit_question_path %></li>
+            <li><%= link_to "delete", question_path, method: :delete %></li>
+          </ul>
         </td>
       <% else %>
         <td>
 
         </td>
       <% end %>
+      <td style="float:right"> 
+        <%= gravatar_for @question.user %><br />
+        Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= link_to @question.user.name, @question.user %> </td>
     </tr>
     <tr>
-      <td> <%= gravatar_for @question.user %>
-        Asked <%= time_ago_in_words(@question.created_at) %> ago by <%= link_to @question.user.name, @question.user %> </td>
     </tr>
   </tbody>
 </table>
@@ -26,7 +31,7 @@
 <%= form_for([@question, @question.answers.build]) do |f| %>
   <div class="field">
     <h3>Answer</h3>
-    <%= f.text_area :body, rows: "5", placeholder: "Type your answer here" %>
+    <%= f.text_area :body, rows: "5", placeholder: "Type your answer here", id: "answer_box" %>
   </div>
   <div class="actions">
     <%= f.submit "Add Answer" %>

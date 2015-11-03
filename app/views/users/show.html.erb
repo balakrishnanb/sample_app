@@ -12,7 +12,7 @@
       <% if @user.questions.any? %>
         <h3>Questions (<%= @user.questions.count %>)</h3>
         <ul class="questions">
-          <%= render @user.questions  %>
+          <%= render @user.questions, skip_user: true  %>
         </ul>
         <!--  will_paginate @user.questions -->
       <% end %>

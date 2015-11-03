@@ -17,7 +17,7 @@ namespace :db do
 
     users = User.all(limit: 6)
     50.times do |n|
-        content = Faker::Lorem.sentence(10)
+        content = Faker::Lorem.paragraph(10)
         users.each do |user|
             title =  Faker::Hacker.say_something_smart.chop + Faker::Lorem.word + '?'
             user.questions.create!(title: title, content: content)
