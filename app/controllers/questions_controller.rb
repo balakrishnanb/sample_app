@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-    before_filter :authenticate_user!, only: [:create, :destroy, :update]
+    before_filter :authenticate_user!, only: [:create, :destroy, :update, :upvote]
 
     def index
         @questions = Question.paginate(page: params[:page])
@@ -12,10 +12,29 @@ class QuestionsController < ApplicationController
     def edit
         @question = Question.find(params[:id])
     end
+    
+    def upvote
+      vote(1)
+    end
 
     def new
         @question = Question.new
     end
+
+    private
+    def vote(value)
+        @question = Question.find(params[:id])
+        if @question.user == current_user
+          redirect_to :back, alert: "You cannot upvote your own question"
+        else
+          vote = Upvote.new
+          vote.question = @question
+          vote.user = current_user
+          vote.save
+          redirect_to :back, notice: "Question upvoted successfully"
+        end
+    end
+
 
     def create
         @question = Question.new(params[:question])
