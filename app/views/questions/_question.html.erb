@@ -1,5 +1,5 @@
 <li>
-<span class="content">[score <%= question.score.to_i %>]<%= link_to question.title, question %></span>
+<span class="content">[<%= question.score.to_i %>]<%= link_to question.title, question %></span>
   <span class="timestamp">
     Asked <%= time_ago_in_words(question.created_at) %> ago <% if defined? skip_user%><% else %> by <%= link_to question.user.name, question.user %> <% end %>
   </span>
