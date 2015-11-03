@@ -1,11 +1,12 @@
 <%= form_for @question do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="field">
-        <%= f.label :title %><br />
+        <%= f.label :title %>
         <%= f.text_field :title, autofocus: true, placeholder: "Type your Question here", id: "question_title_text_box" %>
     </div>
+    <br />
     <div class="field">
-        <%= f.label :content %><br />
+        <%= f.label :content %>
         <%= f.text_area :content, rows: 5, placeholder: "Optional: Add more details about your question here", id: "question_details_textarea" %>
     </div>
     <div class="actions">
