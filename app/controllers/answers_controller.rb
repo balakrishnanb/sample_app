@@ -6,14 +6,13 @@ class AnswersController < ApplicationController
         puts "####################################", params
         @answer.user = current_user
         if @answer.save
-            redirect_to @answer.question, notice: "Answer added successfully "
+            redirect_to :back, notice: "Answer added successfully "
         else
-            redirect_to @answer.question, alert: @answer.errors.full_messages.first
+            redirect_to :back, alert: @answer.errors.full_messages.first
         end
     end
 
     def destroy
-      
       @question = Question.find(params[:question_id])
       @answer = @question.answers.find_by_id(params[:id])
       # HACK: For some reason two delete requests are sent for every click
