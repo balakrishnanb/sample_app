@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
         if @answer.save
             redirect_to @answer.question, notice: "Answer added successfully "
         else
-            redirect_to @answer.question, alert: "Failed to add answer"
+            redirect_to @answer.question, alert: @answer.errors.full_messages.first
         end
     end
 
