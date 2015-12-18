@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   end
   def index
       @users = User.paginate(page: params[:page])
+      respond_to do |format|
+        format.html
+        format.doc
+      end
   end
   def show
       @user = User.find(params[:id])
